@@ -1,7 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { submitAddress } from "./actions/submitAddress";
-import { isLocalStorageEnabled } from "./helpers/isLocalStorageEnabled";
-import crypto from "crypto";
 import appendIDToFormData from "./helpers/appendIDToFormData";
 
 const AddressForm = ({

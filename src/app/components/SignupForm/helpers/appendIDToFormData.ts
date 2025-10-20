@@ -1,4 +1,11 @@
 import { isLocalStorageEnabled } from "./isLocalStorageEnabled";
+import { v4 as uuidv4 } from "uuid";
+
+const addMissingIDToLocalStorage = (): string => {
+  const newID = uuidv4();
+  localStorage.setItem("SL_MARKETING_ID", newID);
+  return newID;
+};
 
 const appendIDToFormData = (formData: FormData): FormData => {
   if (isLocalStorageEnabled()) {
@@ -7,13 +14,11 @@ const appendIDToFormData = (formData: FormData): FormData => {
     if (SL_MARKETING_ID) {
       formData.append("userID", SL_MARKETING_ID);
     } else {
-      const newID = crypto.randomUUID();
-      localStorage.setItem("SL_MARKETING_ID", newID);
+      const newID = addMissingIDToLocalStorage();
       formData.append("userID", newID);
     }
   } else {
-    const newID = crypto.randomUUID();
-    localStorage.setItem("SL_MARKETING_ID", newID);
+    const newID = addMissingIDToLocalStorage();
     formData.append("userID", newID);
   }
 

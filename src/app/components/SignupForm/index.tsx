@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import UtilityForm from "./UtilityForm";
 import AddressForm from "./AddressForm";
 import { isLocalStorageEnabled } from "./helpers/isLocalStorageEnabled";
-import crypto from "crypto";
+import { v4 as uuidv4 } from "uuid";
 
 const SignupForm = () => {
   const [knownUtilities, setKnownUtilities] = useState<string[]>([]);
@@ -14,7 +14,7 @@ const SignupForm = () => {
       const SL_MARKETING_ID = localStorage.getItem("SL_MARKETING_ID");
 
       if (!SL_MARKETING_ID) {
-        const newID = crypto.randomUUID();
+        const newID = uuidv4();
         localStorage.setItem("SL_MARKETING_ID", newID);
       }
     }
